@@ -10,17 +10,39 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+generator erd {
+  provider = "prisma-erd-generator"
+}
+
 model Movie {
-  id             String    @id @default(uuid())
-  name           String
-  director       String
-  duration       Int
-  parentalRating String
-  gender         String
-  synapse        String
-  Session        Session[]
+  id              String            @id @default(uuid())
+  name            String
+  director        String
+  duration        Int
+  parentalRating  String
+  synapse         String
+  posterPath      String
+  Session         Session[]
+  MovieWithGender MovieWithGender[]
 
   @@map("movies")
+}
+
+model MovieWithGender {
+  id      String @id @default(uuid())
+  movieId String
+  genreId String
+
+  movie Movie @relation(fields: [movieId], references: [id])
+  genre Genre @relation(fields: [genreId], references: [id])
+}
+
+model Genre {
+  id              String            @id @default(uuid())
+  type            String
+  MovieWithGender MovieWithGender[]
+
+  @@map("genres")
 }
 
 model Session {
