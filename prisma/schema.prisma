@@ -1,0 +1,69 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Movie {
+  id             String    @id @default(uuid())
+  name           String
+  director       String
+  duration       Int
+  parentalRating String
+  gender         String
+  synapse        String
+  Session        Session[]
+
+  @@map("movies")
+}
+
+model Session {
+  id      String   @id @default(uuid())
+  hour    DateTime
+  movieId String
+  roomId  String
+
+  room  Room   @relation(fields: [roomId], references: [id])
+  movie Movie  @relation(fields: [movieId], references: [id])
+  Sell  Sell[]
+
+  @@map("sessions")
+}
+
+model Room {
+  id       String    @id @default(uuid())
+  code     String
+  capacity Int
+  Session  Session[]
+
+  @@map("rooms")
+}
+
+model Client {
+  id    String   @id @default(uuid())
+  birth DateTime
+  cpf   String
+  name  String
+  Sell  Sell[]
+
+  @@map("clients")
+}
+
+model Sell {
+  id            String @id @default(uuid())
+  ticketType    String
+  paymentMethod String
+  clientId      String
+  sessionId     String
+
+  session Session @relation(fields: [sessionId], references: [id])
+  client  Client  @relation(fields: [clientId], references: [id])
+
+  @@map("sells")
+}
