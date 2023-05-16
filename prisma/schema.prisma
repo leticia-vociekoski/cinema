@@ -23,12 +23,13 @@ model Movie {
   synapse         String
   posterPath      String
   Session         Session[]
-  MovieWithGender MovieWithGender[]
+  MovieWithGender MovieWithGenre[]
 
   @@map("movies")
 }
 
-model MovieWithGender {
+
+model MovieWithGenre {
   id      String @id @default(uuid())
   movieId String
   genreId String
@@ -40,7 +41,7 @@ model MovieWithGender {
 model Genre {
   id              String            @id @default(uuid())
   type            String
-  MovieWithGender MovieWithGender[]
+  MovieWithGender MovieWithGenre[]
 
   @@map("genres")
 }
@@ -50,6 +51,7 @@ model Session {
   hour    DateTime
   movieId String
   roomId  String
+  sessionTypes String
 
   room  Room   @relation(fields: [roomId], references: [id])
   movie Movie  @relation(fields: [movieId], references: [id])

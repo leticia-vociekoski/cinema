@@ -1,3 +1,4 @@
+import { MovieCard } from "@/components/MovieCard";
 import { prisma } from "@/lib/prisma";
 import { CompletedSessions } from "@/models/interfaces/Sessions";
 import { formatDate } from "@/utils/DateParser";
@@ -9,39 +10,20 @@ interface HomeProps {
 }
 
 export default function Home({ sessions }: HomeProps) {
-  useEffect(() => {
-    console.log(sessions);
-  }, []);
   return (
-    <main className="flex flex-col gap-10 justify-center items-center">
-      <h1>Filmes</h1>
+    <main className="flex flex-col gap-10 justify-center py-10 items-center">
+      <div className="bg-[#5191C1] px-5  flex gap-4 rounded-3xl ">
+        <h1 className="my-4">Programação do dia:</h1>
+        <input
+          className="bg-[#0A4B75] text-white py-4 px-2 w-32"
+          type="date"
+          name="day"
+          id="day"
+        />
+      </div>
       <div className="grid grid-cols-3 gap-5">
         {sessions.map(({ movie, room, session }) => (
-          <section className="bg-slate-500 gap-3 group cursor-pointer hover:opacity-80 text-blue-50 max-w-xs flex flex-col justify-center items-start p-4 rounded-lg w-fit">
-            <img
-              className="object-cover w-full transition-all "
-              src={`https://image.tmdb.org/t/p/w500/${movie.posterPath}`}
-              alt="Não existe ainda"
-            />
-            <h1 className="text-xl font-bold">{movie.name}</h1>
-            <div className="flex w-full justify-between items-center">
-              <div className="flex justify-center items-center gap-3">
-                {/* <p className="font-bold text-sm">Nota:</p> */}
-                <span className="text-red-100 bg-purple-600 rounded-lg p-2 font-bold text-xl">
-                  {movie.parentalRating}
-                </span>
-              </div>
-              <span className="font-bold text-xl">
-                {formatDate(session.hour)}
-              </span>
-            </div>
-            <span className="font-bold text-sm">
-              Duração: {movie.duration} Min
-            </span>
-            <p className="line-clamp-2 font-semibold bg-slate-600 rounded-lg px-2 py-1 opacity-90">
-              {movie.synapse}
-            </p>
-          </section>
+          <MovieCard movie={movie} room={room} session={session}></MovieCard>
         ))}
       </div>
     </main>

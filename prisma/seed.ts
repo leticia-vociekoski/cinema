@@ -70,6 +70,7 @@ async function main() {
         await prisma.session.create({
           data: {
             hour: currentDate,
+            sessionTypes: '["3D", "DUB"]',
             movieId: movie.id,
             roomId: room.id,
           },
