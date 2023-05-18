@@ -1,10 +1,10 @@
 import { formatDate } from "@/utils/DateParser";
-import { Movie, Room, Session } from "@prisma/client";
+import { Movie, Room, Session, SessionHourInString } from "@prisma/client";
 import { useEffect, useState } from "react";
 
 interface MovieCardProps {
   movie: Movie;
-  session: Session;
+  session: SessionHourInString;
   room: Room;
 }
 
