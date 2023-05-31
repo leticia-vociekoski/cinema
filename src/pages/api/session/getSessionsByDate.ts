@@ -1,7 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { prisma } from "@/lib/prisma";
 import { CompletedSessions } from "@/models/interfaces/Sessions";
-import dayjs from "dayjs";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { z } from "zod";
 
@@ -23,11 +22,27 @@ export default async function handler(
         return res.status(405)
       }
       
-      const {date} = getSessionsByDateParser.parse(req.body)
+      const {date: DateInString } = getSessionsByDateParser.parse(req.body)
+      const dateInLastTime = new Date(DateInString)
+      
+      const date = new Date(DateInString)
+      
+      date.setUTCHours(0)
+      date.setUTCMinutes(0)
+      date.setUTCMilliseconds(0)
+      date.setUTCSeconds(0)
+      dateInLastTime.setUTCHours(23)
+      dateInLastTime.setUTCMinutes(59)
+      dateInLastTime.setUTCMilliseconds(999)
+      dateInLastTime.setUTCSeconds(59)
+      
+
+      
       const sessions = await prisma.session.findMany({
         where: {
           hour: {
-            gte: new Date(date).toISOString(),
+            gte:date,
+            lte: dateInLastTime
           }
         }
       });
