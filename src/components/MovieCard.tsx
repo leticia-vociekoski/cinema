@@ -1,10 +1,11 @@
 import { formatDate } from "@/utils/DateParser";
-import { Movie, Room, Session, SessionHourInString } from "@prisma/client";
+import { Movie, Room, Session } from "@prisma/client";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 interface MovieCardProps {
   movie: Movie;
-  session: SessionHourInString;
+  session: Session;
   room: Room;
 }
 
@@ -16,7 +17,10 @@ export function MovieCard({ movie, session, room }: MovieCardProps) {
   }, []);
 
   return (
-    <section className="bg-[#46484B] gap-3 group cursor-pointer hover:opacity-80 text-blue-50 max-w-xs flex flex-col justify-start rounded-lg w-fit">
+    <Link
+      href={`/Session/${session.id}`}
+      className="bg-[#46484B] gap-3 group cursor-pointer hover:opacity-80 text-blue-50 max-w-xs flex flex-col justify-start rounded-lg w-fit"
+    >
       <img
         className="object-cover w-full transition-all "
         src={`https://image.tmdb.org/t/p/w500/${movie.posterPath}`}
@@ -50,6 +54,6 @@ export function MovieCard({ movie, session, room }: MovieCardProps) {
           {movie.synapse}
         </p>
       </div>
-    </section>
+    </Link>
   );
 }

@@ -1,13 +1,11 @@
-import { Movie, Room, Session, SessionHourInString } from "@prisma/client";
-
-
+import { Movie, Room, Session } from "@prisma/client";
 
 export interface CompletedSessions {
   movie: Movie;
   room: Room;
-  session: SessionHourInString;
+  session: Session;
 }
 
 export interface SessionsResponse {
-  sessions: CompletedSessions[]
+  sessions: CompletedSessions[];
 }
