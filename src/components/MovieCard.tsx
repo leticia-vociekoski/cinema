@@ -2,6 +2,7 @@ import { formatDate } from "@/utils/DateParser";
 import { Movie, Room, Session } from "@prisma/client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { SessionTypeCard } from "./SessionTypeCard";
 
 interface MovieCardProps {
   movie: Movie;
@@ -18,7 +19,7 @@ export function MovieCard({ movie, session, room }: MovieCardProps) {
 
   return (
     <Link
-      href={`/Session/${session.id}`}
+      href={`/session/${session.id}`}
       className="bg-[#46484B] gap-3 group cursor-pointer hover:opacity-80 text-blue-50 max-w-xs flex flex-col justify-start rounded-lg w-fit"
     >
       <img
@@ -28,11 +29,7 @@ export function MovieCard({ movie, session, room }: MovieCardProps) {
       />
       <div className="px-4 pb-2 flex flex-col gap-2">
         <div className="flex gap-2 items-center">
-          {sessionTypes?.map((type) => (
-            <span className=" bg-[#8CA315] px-2 py-1  font-bold text-xs rounded-xl ">
-              {type}
-            </span>
-          ))}
+          {sessionTypes && <SessionTypeCard sessionTypes={sessionTypes} />}
         </div>
         <h1 className="text-xl font-bold">{movie.name}</h1>
         <div className="flex w-full justify-between items-center">
