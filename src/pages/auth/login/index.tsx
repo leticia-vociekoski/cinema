@@ -1,7 +1,7 @@
 export default function Login() {
   return (
     <main className="w-screen flex flex-col mt-24 gap-5 justify-center items-center">
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col max-sm:w-full max-sm:px-10 gap-4">
         <h1 className="text-2xl font-medium text-slate-700">
           Entre com uma rede social
         </h1>
@@ -10,8 +10,8 @@ export default function Login() {
         </button>
       </div>
       <hr className="bg-slate-500 rounded-full w-3/4 h-1" />
-      <div className="flex justify-center w-full px-10 gap-10 items-center">
-        <form className="flex flex-col justify-center items-center gap-4 flex-1">
+      <div className="flex justify-center w-full px-10 gap-10 items-center max-sm:flex-col">
+        <form className="flex flex-col max-sm:w-full justify-center items-center gap-4 flex-1">
           <h1 className="text-2xl font-medium text-slate-700">
             Entre como cliente See It
           </h1>
@@ -41,7 +41,7 @@ export default function Login() {
             Entrar
           </button>
         </form>
-        <div className="flex flex-col justify-center items-center gap-3 flex-1">
+        <div className="flex flex-col max-sm:w-full justify-center items-center gap-3 flex-1">
           <h1 className="text-2xl font-medium text-slate-700">
             Criar nova conta
           </h1>
