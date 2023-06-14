@@ -1,3 +1,6 @@
+import { Input } from "@/components/Input";
+import Link from "next/link";
+
 export default function Login() {
   return (
     <main className="w-screen flex flex-col mt-24 gap-5 justify-center items-center">
@@ -15,16 +18,8 @@ export default function Login() {
           <h1 className="text-2xl font-medium text-slate-700">
             Entre como cliente See It
           </h1>
-          <input
-            className="w-full py-2 px-4 border border-l-8 border-gray-300 rounded-l-none rounded-md"
-            type="text"
-            placeholder="Usuário"
-          />
-          <input
-            className="w-full py-2 px-4 border border-l-8 border-gray-300 rounded-l-none rounded-md"
-            type="password"
-            placeholder="Senha"
-          />
+          <Input type="text" placeholder="Usuário" />
+          <Input placeholder="Senha" type="password" />
           <p>
             <a className="text-sky-500" href="#">
               Políticas de serviço
@@ -45,9 +40,12 @@ export default function Login() {
           <h1 className="text-2xl font-medium text-slate-700">
             Criar nova conta
           </h1>
-          <button className="py-2 w-full rounded-xl bg-blue-900 text-white">
+          <Link
+            href={"/auth/register"}
+            className="py-2 w-full flex justify-center items-center rounded-xl bg-blue-900 text-white"
+          >
             Criar uma nova conta
-          </button>
+          </Link>
         </div>
       </div>
       <hr className="bg-slate-500 w-3/4 h-1 rounded-full " />
