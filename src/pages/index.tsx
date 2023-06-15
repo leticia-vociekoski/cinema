@@ -37,10 +37,12 @@ export default function Home({ sessions }: HomeProps) {
   });
 
   return (
-    <main className="flex flex-col justify-center pb-10 items-center">
+    <main className="flex flex-col justify-center pb-10 items-center bg-gray-50">
       <PresentationCard title="CINEMA" />
       <div className="bg-[#5191C1] px-5 my-5 flex gap-4 rounded-3xl ">
-        <h1 className="my-4">Programação do dia:</h1>
+        <h1 className="my-4 font-bold text-xl text-white">
+          Programação do dia:
+        </h1>
         <input
           className="bg-[#0A4B75] text-white py-4 px-2 w-32"
           type="date"

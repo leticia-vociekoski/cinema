@@ -75,14 +75,16 @@ export default function Session() {
           <h1 className="text-3xl font-semibold">Sinopse</h1>
           <hr className="bg-black h-1  w-full rounded-lg" />
           <p className="text-xl">{currentCompletedSession.movie.synapse}</p>
-          <div className="flex gap-5">
+          <div className="flex flex-col justify-center items-center w-full gap-5">
             <img
-              className="w-60 "
+              className="w-96 "
               src={`https://image.tmdb.org/t/p/w500/${currentCompletedSession.movie.posterPath}`}
               alt={currentCompletedSession.movie.name}
             />
-            <div className="flex flex-col">
+            <div className="flex flex-col self-start w-full">
               <h1 className="font-semibold text-2xl">Ficha técnica</h1>
+              <hr />
+              <br />
               <p>Classificação: fazer 1.1v</p>
               <p>Duração: {currentCompletedSession.movie.duration}min</p>
               <p>Genêro: fazer 1.2v</p>
